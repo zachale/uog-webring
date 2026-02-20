@@ -1,48 +1,24 @@
-# Contributing to uoguelph.network
+# Contributing to Guelph Webring
 
-## Membership Requirements
+Thanks for contributing.
 
-- You are a University of Guelph student/alum.
-- You have a personal site you want linked in the ring.
-
-## Add Yourself
+## Add your site
 
 1. Fork this repository.
-2. Create a branch.
-3. (Optional) Add a square image in `public/photos/`.
-4. Add your member object to `data/members.ts`.
-5. Run:
-   - `npm test`
-   - `npm run lint`
-6. Open a pull request.
+2. Edit `index.html` and add your entry in `webringData.sites`:
 
-## Member Schema
-
-Required fields:
-
-- `id` (slug, unique)
-- `name`
-- `url` (absolute URL)
-- `bio`
-- `tags` (at least one)
-- `addedAt` (`YYYY-MM-DD`)
-
-Optional fields:
-
-- `program`, `year`, `profilePic`
-- `instagram`, `twitter`, `linkedin`
-- `connections` (array of member ids)
-- `status` (`active` or `paused`)
-
-## Embed Snippet
-
-```html
-<script
-  src="https://uoguelph.network/embed.js"
-  data-webring
-  data-user="your-member-id"
-  data-mode="ring"
-></script>
+```json
+{
+  "name": "Your Name",
+  "year": 20XX,
+  "website": "https://your-site.com"
+}
 ```
 
-`data-mode="connections"` uses your optional connections list.
+3. Keep entries valid JSON and include `https://` in URLs.
+4. Open a pull request.
+
+## Basic checks
+
+- Ensure your site URL loads.
+- Ensure search and navigation still work.

@@ -1,36 +1,63 @@
-# uoguelph.network
+# Guelph Webring
 
-A webring for University of Guelph students, inspired by Waterloo-style directory + embed patterns.
+A webring for University of Guelph Computer Science students and alumni.
 
-## Routes
+Live site: [uoguelph.network](https://uoguelph.network)
 
-- `/` home + mission + highlights
-- `/members` searchable directory
-- `/graph` optional connection graph
-- `/join` PR onboarding
-- `/ring?site=<url>&action=prev|next|random` strict ring redirect
-- `/api/webring?user=<memberId>` connection targets for widget
-- `/embed.js` embeddable widget script
+## Join the webring
 
-## Local Development
+1. Add the widget to your site (template below).
+2. Fork this repo.
+3. Edit `index.html` and add your entry at the bottom of `webringData.sites`:
 
-```bash
-npm install
-npm run dev
+```json
+{
+  "name": "Your Name",
+  "website": "https://your-website.com",
+  "year": 20XX
+}
 ```
 
-## Quality Checks
+4. Open a pull request.
 
-```bash
-npm run lint
-npm test
-npm run build
+## Widget template
+
+### HTML
+
+```html
+<div style="display: flex; align-items: center; gap: 8px;">
+  <a href="https://uoguelph.network/#your-site-here?nav=prev">←</a>
+  <a href="https://uoguelph.network/#your-site-here" target="_blank" rel="noopener noreferrer">
+    <img src="https://uoguelph.network/icon.black.svg" alt="Guelph Webring" style="width: 24px; height: auto; opacity: 0.8;" />
+  </a>
+  <a href="https://uoguelph.network/#your-site-here?nav=next">→</a>
+</div>
 ```
 
-## Deploy
+### JSX
 
-Deploy to Vercel. Set `NEXT_PUBLIC_BASE_URL` to your production origin (for example `https://uoguelph.network`).
+```jsx
+<div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <a href="https://uoguelph.network/#your-site-here?nav=prev">←</a>
+  <a href="https://uoguelph.network/#your-site-here" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://uoguelph.network/icon.black.svg"
+      alt="Guelph Webring"
+      style={{ width: "24px", height: "auto", opacity: 0.8 }}
+    />
+  </a>
+  <a href="https://uoguelph.network/#your-site-here?nav=next">→</a>
+</div>
+```
 
-## Join the Ring
+Use `icon.white.svg` for dark sites and `icon.red.svg` if preferred.
 
-See `CONTRIBUTING.md`.
+## Notes
+
+- Keep URLs absolute (`https://...`).
+- Keep the JSON valid in `index.html`.
+- If you are not in CS, you can still make your own webring for your community.
+
+## Credits
+
+Inspired by community webring projects, including [XXIIVV Webring](https://webring.xxiivv.com/).
