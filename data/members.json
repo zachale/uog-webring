@@ -19,6 +19,72 @@
         "twitter": "https://x.com/yousufakhan95",
         "linkedin": "https://www.linkedin.com/in/yousuf-ahmed-khan/"
       }
+    },
+    {
+      "name": "Will Pringle",
+      "year": 2023,
+      "website": "https://willpringle.ca/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "",
+        "github": "https://github.com/wiwichips"
+      }
+    },
+    {
+      "name": "Liang Wang",
+      "year": 2025,
+      "website": "https://liangw.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/IntrnlCmplrErr",
+        "linkedin": "https://www.linkedin.com/in/liang-wang-225607174/",
+        "github": "https://github.com/Internal-Compiler-Error"
+      }
+    },
+    {
+      "name": "Zach Legesse",
+      "year": 2027,
+      "website": "https://zachlegesse.ca",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://linkedin.com/in/zach-legesse",
+        "github": ""
+      }
+    },
+    {
+      "name": "Basil Yusuf",
+      "year": 2024,
+      "website": "https://www.basilyusuf.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "https://x.com/basilyusuf1709",
+        "linkedin": "https://www.linkedin.com/in/basilyusuf1709/",
+        "github": "https://github.com/basilysf1709"
+      }
+    },
+    {
+      "name": "Sean Chow",
+      "year": 2020,
+      "website": "https://seanchow.com",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/sean-chow/",
+        "github": ""
+      }
+    },
+    {
+      "name": "Pradhapan Rajendran",
+      "year": 2024,
+      "website": "https://www.pradr.com/",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/pradhapanr/",
+        "github": ""
+      }
     }
   ]
 }
