@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Grid background */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, #e4e4e7 1px, transparent 1px),
+    linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
+}
+.dark .bg-grid {
+  background-image:
+    linear-gradient(to right, #262626 1px, transparent 1px),
+    linear-gradient(to bottom, #262626 1px, transparent 1px);
+}
+.bg-grid-fade {
+  mask-image: radial-gradient(ellipse at center, transparent 20%, black);
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black);
+}
+
 @layer base {
   @font-face {
     font-family: "latin-mono-regular";

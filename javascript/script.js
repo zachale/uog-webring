@@ -63,21 +63,21 @@ let createWebringList = (matchedSiteIndices) => {
     }
 
     const name = document.createElement("td");
-    name.className = "pr-4 py-1 font-latinRomanCaps truncate";
+    name.className = "pr-1 py-0 font-latinRomanCaps truncate";
     name.textContent = site.name;
     if (isSearchItem) {
       name.className += " text-mustard-100";
     }
 
     const year = document.createElement("td");
-    year.className = "pr-4 py-1 text-left font-latinRoman";
+    year.className = "pr-1 py-0 text-left font-latinRoman";
     year.textContent = site.year;
     if (isSearchItem) {
       year.className += " text-mustard-100";
     }
 
     const urlCell = document.createElement("td");
-    urlCell.className = "pr-6 py-1";
+    urlCell.className = "pr-1 py-0 truncate";
 
     const link = document.createElement("a");
     link.href = site.website;
@@ -91,7 +91,7 @@ let createWebringList = (matchedSiteIndices) => {
     urlCell.appendChild(link);
 
     const linksCell = document.createElement("td");
-    linksCell.className = "pl-6 py-1";
+    linksCell.className = "pl-2 py-0";
 
     const links = document.createElement("div");
     links.className = "flex items-center gap-2";
