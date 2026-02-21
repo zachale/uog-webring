@@ -1,7 +1,11 @@
 let mobileExists = false,
   desktopExists = false;
 
+const getSites = () => (window.webringData?.sites ?? []);
+
 function checkIfGraphNeeded() {
+  if (getSites().length === 0) return;
+
   if (window.innerWidth < 640 && !mobileExists) {
     mobileExists = true;
     makeGraph("chart-container-mobile");
@@ -13,6 +17,8 @@ function checkIfGraphNeeded() {
 
 function makeGraph(containerId) {
   const container = document.getElementById(containerId);
+  if (!container || getSites().length === 0) return;
+
   const width = container.clientWidth;
   const height = container.clientHeight;
 
@@ -41,7 +47,7 @@ function makeGraph(containerId) {
 
   svg.call(zoom);
 
-  webringData.sites.forEach((site, index) => {
+  getSites().forEach((site, index) => {
     site.id = `node-${index}`;
   });
 
@@ -60,9 +66,9 @@ function makeGraph(containerId) {
     .alphaDecay(0.02)
     .velocityDecay(0.4);
 
-  const links = webringData.sites.map((site, index) => ({
+  const links = getSites().map((site, index) => ({
     source: site.id,
-    target: webringData.sites[(index + 1) % webringData.sites.length].id,
+    target: getSites()[(index + 1) % getSites().length].id,
   }));
 
   const link = g
@@ -78,7 +84,7 @@ function makeGraph(containerId) {
   const node = g
     .append("g")
     .selectAll("g")
-    .data(webringData.sites)
+    .data(getSites())
     .enter()
     .append("g")
     .call(
@@ -107,7 +113,7 @@ function makeGraph(containerId) {
     .attr("fill", "#4F587C")
     .style("font-size", "12px");
 
-  simulation.nodes(webringData.sites).on("tick", ticked);
+  simulation.nodes(getSites()).on("tick", ticked);
 
   simulation.force("link").links(links);
 
@@ -225,7 +231,7 @@ function makeGraph(containerId) {
       return matches ? highlighedNodeColor : defaultNodeColor;
     });
 
-    const totalNodes = webringData.sites.length;
+    const totalNodes = getSites().length;
     const highlightedNodes = searchTerm
       ? node
           .filter(
@@ -356,12 +362,15 @@ function makeGraph(containerId) {
   statsBackground.raise();
   statsDisplay.raise();
 
-  const totalNodes = webringData.sites.length;
+  const totalNodes = getSites().length;
   statsDisplay.text(`Sites: ${totalNodes}`);
 
   const textWidth = statsDisplay.node().getComputedTextLength();
   statsBackground.attr("width", textWidth + 20).attr("height", 25);
 }
 
-document.addEventListener("DOMContentLoaded", checkIfGraphNeeded);
+document.addEventListener("DOMContentLoaded", async () => {
+  await (window.webringDataReady ?? Promise.resolve());
+  checkIfGraphNeeded();
+});
 window.addEventListener("resize", checkIfGraphNeeded);

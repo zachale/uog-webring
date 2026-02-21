@@ -5,7 +5,7 @@ Thanks for contributing.
 ## Add your site
 
 1. Fork this repository.
-2. Edit `index.html` and add your entry in `webringData.sites`:
+2. Edit `data/members.json` and add your entry inside `sites`:
 
 ```json
 {

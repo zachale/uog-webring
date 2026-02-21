@@ -8,7 +8,7 @@ Live site: [uoguelph.network](https://uoguelph.network)
 
 1. Add the widget to your site (template below).
 2. Fork this repo.
-3. Edit `index.html` and add your entry at the bottom of `webringData.sites`:
+3. Edit `data/members.json` and add your entry inside `sites`:
 
 ```json
 {
@@ -60,9 +60,5 @@ Use `icon.white.svg` for dark sites and `icon.red.svg` if preferred.
 ## Notes
 
 - Keep URLs absolute (`https://...`).
-- Keep the JSON valid in `index.html`.
+- Keep the JSON valid in `data/members.json`.
 - If you are not in CS, you can still make your own webring for your community.
-
-## Credits
-
-Inspired by community webring projects, including [XXIIVV Webring](https://webring.xxiivv.com/).

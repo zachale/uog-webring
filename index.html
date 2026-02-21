@@ -40,24 +40,21 @@
   <!-- JS sources -->
   <script src="//unpkg.com/alpinejs" defer></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  <!-- ↓↓↓ OPEN THIS GUY UP ↓↓↓ -->
   <script>
-    const webringData = {
-      "sites": [
-        {
-          "name": "Faiz Mustansar",
-          "year": 2026,
-          "website": "https://faizm.me",
-          "links": {
-            "instagram": "https://www.instagram.com/faizm.30/",
-            "twitter": "https://x.com/_faizm",
-            "linkedin": "https://www.linkedin.com/in/faizmustansar"
-          }
-        }
-      ]
-    };
+    window.webringData = { sites: [] };
+    window.webringDataReady = fetch("./data/members.json")
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to load member data");
+        return response.json();
+      })
+      .then((data) => {
+        window.webringData = data;
+      })
+      .catch((error) => {
+        console.error("Webring data load error:", error);
+        window.webringData = { sites: [] };
+      });
   </script>
-  <!-- ↑↑↑ -->
   <script src="./javascript/helpers.js" type="module"></script>
   <script src="./javascript/script.js" type="module"></script>
   <script src="./javascript/d3-ring-chart.js"></script>

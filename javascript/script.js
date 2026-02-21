@@ -11,6 +11,8 @@ let logConsoleMessage = () => {
   );
 };
 
+const getSites = () => (window.webringData?.sites ?? []);
+
 const socialIconSvg = (type) => {
   if (type === "instagram") {
     return `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.9 1.15a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/></svg>`;
@@ -44,14 +46,14 @@ let createWebringList = (matchedSiteIndices) => {
 
   let firstHighlightedItem = null;
 
-  webringData.sites.forEach((site, index) => {
+  getSites().forEach((site, index) => {
     const displayUrl = formatUrl(site.website);
 
     const listItem = document.createElement("tr");
     listItem.className = "align-middle";
     const isSearchItem =
       matchedSiteIndices.includes(index) &&
-      matchedSiteIndices.length !== webringData.sites.length;
+      matchedSiteIndices.length !== getSites().length;
     if (isSearchItem) {
       listItem.className += " bg-mustard-500";
     }
@@ -135,7 +137,7 @@ function handleUrlFragment(searchInput) {
 function filterWebring(searchTerm) {
   const searchLower = searchTerm.toLowerCase();
   const matchedSiteIndices = [];
-  webringData.sites.forEach((site, index) => {
+  getSites().forEach((site, index) => {
     if (
       site.name.toLowerCase().includes(searchLower) ||
       fuzzyMatch(site.website.toLowerCase(), searchLower) ||
@@ -161,7 +163,7 @@ let navigateWebring = () => {
   const navTrimmed = nav ? nav.replace(/\/+$/, "").trim() : "";
   if (!nav || !["next", "prev"].includes(navTrimmed)) return;
 
-  const match = webringData.sites.filter((site) =>
+  const match = getSites().filter((site) =>
     fuzzyMatch(currentSite, site.website)
   );
   if (match.length === 0) return;
@@ -171,23 +173,25 @@ let navigateWebring = () => {
     );
   }
 
-  const currIndex = webringData.sites.findIndex((site) =>
+  const currIndex = getSites().findIndex((site) =>
     fuzzyMatch(currentSite, site.website)
   );
   const increment = navTrimmed === "next" ? 1 : -1;
-  let newIndex = (currIndex + increment) % webringData.sites.length;
-  if (newIndex < 0) newIndex = webringData.sites.length - 1;
-  if (!webringData.sites[newIndex]) return;
+  let newIndex = (currIndex + increment) % getSites().length;
+  if (newIndex < 0) newIndex = getSites().length - 1;
+  if (!getSites()[newIndex]) return;
 
   document.body.innerHTML = `
   <main class="p-6 min-h-[100vh] w-[100vw] text-black-900">
     <p class="font-latinMonoCondOblique">redirecting...</p>
   </main>
   `;
-  window.location.href = webringData.sites[newIndex].website;
+  window.location.href = getSites()[newIndex].website;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await (window.webringDataReady ?? Promise.resolve());
+
   if (window.location.hash.includes("?nav=")) {
     navigateWebring();
   }
@@ -195,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileInput = document.getElementById("search-mobile");
 
   logConsoleMessage();
-  createWebringList(webringData.sites);
+  createWebringList(getSites().map((_, index) => index));
   handleUrlFragment(desktopInput);
   handleUrlFragment(mobileInput);
 
