@@ -76,6 +76,13 @@ let createWebringList = (matchedSiteIndices) => {
       year.className += " text-mustard-100";
     }
 
+    const roleCell = document.createElement("td");
+    roleCell.className = "pr-1 py-0 font-latinRoman truncate";
+    roleCell.textContent = site.role?.trim() || "—";
+    if (isSearchItem) {
+      roleCell.className += " text-mustard-100";
+    }
+
     const urlCell = document.createElement("td");
     urlCell.className = "pr-1 py-0 truncate";
 
@@ -113,6 +120,7 @@ let createWebringList = (matchedSiteIndices) => {
 
     listItem.appendChild(name);
     listItem.appendChild(year);
+    listItem.appendChild(roleCell);
     listItem.appendChild(urlCell);
     listItem.appendChild(linksCell);
     webringList.appendChild(listItem);
@@ -142,6 +150,7 @@ function filterWebring(searchTerm) {
       site.name.toLowerCase().includes(searchLower) ||
       fuzzyMatch(site.website.toLowerCase(), searchLower) ||
       site.year.toString().includes(searchLower) ||
+      (site?.role || "").toLowerCase().includes(searchLower) ||
       (site?.links?.instagram || "").toLowerCase().includes(searchLower) ||
       (site?.links?.twitter || "").toLowerCase().includes(searchLower) ||
       (site?.links?.linkedin || "").toLowerCase().includes(searchLower)
