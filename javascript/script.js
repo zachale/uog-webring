@@ -70,14 +70,14 @@ let createWebringList = (matchedSiteIndices) => {
     }
 
     const year = document.createElement("td");
-    year.className = "pr-3 py-0 text-left font-latinRoman";
+    year.className = "hidden sm:table-cell pr-4 sm:pr-3 py-0 text-left font-latinRoman";
     year.textContent = site.year;
     if (isSearchItem) {
       year.className += " text-mustard-100";
     }
 
     const roleCell = document.createElement("td");
-    roleCell.className = "pr-2 pl-1 py-0 font-latinRoman truncate";
+    roleCell.className = "pr-2 pl-2 sm:pl-1 py-0 font-latinRoman truncate";
     roleCell.textContent = site.role?.trim() || "—";
     if (isSearchItem) {
       roleCell.className += " text-mustard-100";
@@ -98,7 +98,7 @@ let createWebringList = (matchedSiteIndices) => {
     urlCell.appendChild(link);
 
     const linksCell = document.createElement("td");
-    linksCell.className = "pl-3 py-0";
+    linksCell.className = "pl-3 py-0 min-w-[3.5rem]";
 
     const links = document.createElement("div");
     links.className = "flex items-center gap-3";
