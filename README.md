@@ -62,3 +62,13 @@ The badge uses the gryphon SVG (`gryphon.svg`).
 - Keep URLs absolute (`https://...`).
 - Keep the JSON valid in `data/members.json`.
 - If you are not in CS, you can still make your own webring for your community.
+
+## Attribution
+
+This project is forked from:
+https://cs.uwatering.com/
+
+Original repository:
+https://github.com/JusGu/uwatering
+
+Used under the MIT License.
