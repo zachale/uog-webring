@@ -4,6 +4,8 @@ A webring for University of Guelph Computer Science students and alumni.
 
 Live site: [www.uguelph.network](https://www.uguelph.network)
 
+![home page](image.png)
+
 ## Join the webring
 
 1. Add the widget to your site (template below).
