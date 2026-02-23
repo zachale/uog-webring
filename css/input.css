@@ -2,17 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-brand-canvas {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(circle at 12% 10%, #ffc42933 0, transparent 38%),
+    radial-gradient(circle at 85% 18%, #e5193722 0, transparent 34%),
+    radial-gradient(circle at 50% 85%, #ffc4291f 0, transparent 42%);
+}
+
 /* Grid background */
 .bg-grid {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, #e4e4e7 1px, transparent 1px),
-    linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
+    linear-gradient(to right, #ffc42933 1px, transparent 1px),
+    linear-gradient(to bottom, #ffc42933 1px, transparent 1px);
 }
 .dark .bg-grid {
   background-image:
-    linear-gradient(to right, #262626 1px, transparent 1px),
-    linear-gradient(to bottom, #262626 1px, transparent 1px);
+    linear-gradient(to right, #00000022 1px, transparent 1px),
+    linear-gradient(to bottom, #00000022 1px, transparent 1px);
 }
 .bg-grid-fade {
   mask-image: radial-gradient(ellipse at center, transparent 20%, black);

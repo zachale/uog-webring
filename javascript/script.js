@@ -5,9 +5,9 @@ let logConsoleMessage = () => {
     "%c👋 Hey there" +
       "\n\n%cLooks like you're poking around in the console. Why not add your site to the webring?" +
       "\n\n%c→ https://github.com/faizm10/uog-webring",
-    "font-size: 18px; font-weight: bold; color: #FF3366;",
-    "font-size: 14px; color: #00FF00;",
-    "font-size: 14px; color: #3399FF; text-decoration: underline;"
+    "font-size: 18px; font-weight: bold; color: #E51937;",
+    "font-size: 14px; color: #000000;",
+    "font-size: 14px; color: #FFC429; text-decoration: underline;"
   );
 };
 
@@ -35,7 +35,7 @@ const createSocialLink = (type, url, isSearchItem) => {
   a.rel = "noopener noreferrer";
   a.title = type === "twitter" ? "Twitter/X" : type[0].toUpperCase() + type.slice(1);
   a.className = "inline-flex items-center";
-  a.style.color = isSearchItem ? "#F6E8C7" : "#D1892B";
+  a.style.color = isSearchItem ? "#000000" : "#E51937";
   a.innerHTML = socialIconSvg(type);
   return a;
 };
@@ -113,7 +113,7 @@ let createWebringList = (matchedSiteIndices) => {
       const empty = document.createElement("span");
       empty.textContent = "—";
       empty.className = "font-latinMonoRegular";
-      empty.style.color = isSearchItem ? "#F6E8C7" : "#9f8f73";
+      empty.style.color = isSearchItem ? "#000000" : "#E51937";
       links.appendChild(empty);
     }
     linksCell.appendChild(links);

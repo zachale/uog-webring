@@ -23,9 +23,14 @@ function makeGraph(containerId) {
   const height = container.clientHeight;
 
   const nodeRadius = 8;
-  const defaultNodeColor = "#B8B8B8";
-  const highlighedNodeColor = "#294B63";
-  const defaultEdgeColor = "#E5E5E5";
+  const hexPoints = Array.from({ length: 6 }, (_, i) => {
+    // Flat-top hexagon for cleaner legibility in dense graph layouts.
+    const angle = (Math.PI / 3) * i;
+    return `${Math.cos(angle) * nodeRadius},${Math.sin(angle) * nodeRadius}`;
+  }).join(" ");
+  const defaultNodeColor = "#FFC429";
+  const highlighedNodeColor = "#E51937";
+  const defaultEdgeColor = "#00000033";
 
   const svg = d3
     .select(`#${containerId}`)
@@ -33,7 +38,7 @@ function makeGraph(containerId) {
     .attr("width", "100%")
     .attr("height", "100%")
     .attr("viewBox", `0 0 ${width} ${height}`)
-    .style("background-color", "#FAF8F8")
+    .style("background-color", "#FFFFFF")
     .style("cursor", "move");
 
   const g = svg.append("g");
@@ -47,8 +52,15 @@ function makeGraph(containerId) {
 
   svg.call(zoom);
 
+  const totalSites = getSites().length;
+  const linkDistance = Math.max(60, Math.min(width, height) * 0.22);
+
   getSites().forEach((site, index) => {
     site.id = `node-${index}`;
+    if (!Number.isFinite(site.x) || !Number.isFinite(site.y)) {
+      site.x = width / 2 + (Math.random() - 0.5) * 40;
+      site.y = height / 2 + (Math.random() - 0.5) * 40;
+    }
   });
 
   const simulation = d3
@@ -58,9 +70,10 @@ function makeGraph(containerId) {
       d3
         .forceLink()
         .id((d) => d.id)
-        .distance(100)
+        .distance(linkDistance)
+        .strength(0.6)
     )
-    .force("charge", d3.forceManyBody().strength(-100))
+    .force("charge", d3.forceManyBody().strength(-90))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collision", d3.forceCollide().radius(nodeRadius * 2))
     .alphaDecay(0.02)
@@ -96,9 +109,12 @@ function makeGraph(containerId) {
     );
 
   node
-    .append("circle")
-    .attr("r", nodeRadius)
+    .append("polygon")
+    .attr("class", "node-shape")
+    .attr("points", hexPoints)
     .attr("fill", defaultNodeColor)
+    .attr("stroke", "#00000088")
+    .attr("stroke-width", 0.75)
     .on("mouseover", handleMouseOver)
     .on("mouseout", handleMouseOut)
     .on("click", handleClick);
@@ -110,7 +126,7 @@ function makeGraph(containerId) {
     .attr("dx", 12)
     .attr("dy", 4)
     .text(d => d.website.replace(/^https?:\/\//, ""))
-    .attr("fill", "#4F587C")
+    .attr("fill", "#000000")
     .style("font-size", "12px");
 
   simulation.nodes(getSites()).on("tick", ticked);
@@ -220,7 +236,7 @@ function makeGraph(containerId) {
   function highlightAndZoomToNodes(searchTerm) {
     searchTerm = searchTerm.toLowerCase();
 
-    node.selectAll("circle").attr("fill", (d) => {
+    node.selectAll(".node-shape").attr("fill", (d) => {
       if (searchTerm === "") {
         return defaultNodeColor;
       }
@@ -337,6 +353,14 @@ function makeGraph(containerId) {
     statsBackground.attr("y", newHeight - 30);
 
     simulation.force("center", d3.forceCenter(newWidth / 2, newHeight / 2));
+    simulation.force(
+      "link",
+      d3
+        .forceLink(links)
+        .id((d) => d.id)
+        .distance(Math.max(60, Math.min(newWidth, newHeight) * 0.22))
+        .strength(0.6)
+    );
     simulation.alpha(0.3).restart();
   });
 
@@ -352,7 +376,7 @@ function makeGraph(containerId) {
   const statsBackground = svg
     .append("rect")
     .attr("id", "stats-background")
-    .attr("fill", "#4F587C")
+    .attr("fill", "#E51937")
     .attr("opacity", 0.5)
     .attr("x", 5)
     .attr("y", height - 30)

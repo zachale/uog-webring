@@ -1,5 +1,5 @@
 export default function WebringIcon({
-  color = "#1C1917",
+  color = "#000000",
   size = 20,
 }: {
   color?: string;
