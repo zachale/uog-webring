@@ -259,6 +259,17 @@
         "twitter": "",
         "linkedin": "https://www.linkedin.com/in/yousephe"
       }
+    },
+    {
+      "name": "Pasan Undugodage",
+      "year": 2023,
+      "website": "https://pasanishere.github.io/",
+      "links": {
+        "instagram": "https://www.instagram.com/pasanundugodage/",
+        "twitter": "https://x.com/PasanIsHere",
+        "linkedin": "https://www.linkedin.com/in/pasanu"
+        "github": "https://github.com/pasanishere"
+      }
     }
   ]
 }
