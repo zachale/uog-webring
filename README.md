@@ -24,7 +24,7 @@ Live site: [www.uguelph.network](https://www.uguelph.network)
 }
 ```
 
-- **`role`** (optional): What you currently do—e.g. job title, "Student", "Founder", "ML Engineer". Helps others find you when browsing or searching the webring.
+- **`role`** (optional): Your role—e.g. job title, "Student", "Founder", "ML Engineer". Helps others find you when browsing or searching the webring.
 
 4. Open a pull request.
 
@@ -64,7 +64,7 @@ The badge uses the gryphon SVG (`gryphon.svg`).
 
 - Keep URLs absolute (`https://...`).
 - Keep the JSON valid in `data/members.json`.
-- **Optional:** Add a `role` field (e.g. "Software Engineer", "Student", "Founder") so visitors can search and filter by what people do.
+- **Optional:** Add a `role` field (e.g. "Software Engineer", "Student", "Founder") so visitors can search and filter by role.
 - If you are not in CS, you can still make your own webring for your community.
 
 ## Attribution
