@@ -46,7 +46,7 @@ Live site: [www.uguelph.network](https://www.uguelph.network)
   <a href="https://www.uguelph.network/#your-site-here?nav=prev">←</a>
   <a href="https://www.uguelph.network/#your-site-here" target="_blank" rel="noopener noreferrer">
     <img
-      src="https://www.uguelph.network/webAssets/gryphon.svg"
+      src="https://www.uguelph.network/gryphon.svg"
       alt="Guelph Webring"
       style={{ width: "32px", height: "auto", opacity: 0.9 }}
     />
