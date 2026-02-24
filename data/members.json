@@ -335,5 +335,30 @@
           "github": "https://github.com/connor1219"
         }
       }
+      ,
+    {
+        "name": "Gevin Madharha",
+        "year": 2022,
+        "website": "https://gevin.ca",
+        "role": "SWE II @ Warner Bros. Discovery",
+        "links": {
+          "instagram": "https://www.instagram.com/gevinthegreat",
+          "twitter": "",
+          "linkedin": "https://www.linkedin.com/in/gevinm/",
+          "github": ""
+        }
+      },
+    {
+      "name": "Justin Leski",
+      "year": 2027,
+      "website": "https://www.justinleski.com/",
+      "role": "Incoming @ RBC Amplify",
+      "links": {
+        "instagram": "",
+        "twitter": "",
+        "linkedin": "https://www.linkedin.com/in/justinleski/",
+        "github": "https://github.com/justinleski"
+      }
+    }
   ]
 }
